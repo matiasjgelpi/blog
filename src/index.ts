@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import { connectDb } from './database/dbConnection'
 import blogPostRoutes from './routes/BlogPostRoutes'
