@@ -14,6 +14,8 @@ app.use('/', (_, res) => {
   return res.status(404).send({ msg: 'Page not found' })
 })
 
-app.listen(3001, () => {
-  console.log('Server started on port 3001')
+const PORT = ((process.env.PORT !== undefined) && process.env.PORT) || 3001
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`)
 })
