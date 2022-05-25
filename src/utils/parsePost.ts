@@ -1,7 +1,19 @@
-import { BlogPostUpdate } from '../types/types'
+import { BlogPost, BlogPostUpdate } from '../types/types'
 import { parseStrings, parseNumbers } from './blogValidators'
 
-const toUpdatePost = (object: any): BlogPostUpdate => {
+export const toNewPost = (object: any): BlogPost => {
+  const newPost: BlogPost = {
+    title: parseStrings(object.title, 'title'),
+    content: parseStrings(object.content, 'content'),
+    rating: parseNumbers(object.rating, 'rating'),
+    image: parseStrings(object.image, 'image'),
+    date: new Date()
+  }
+
+  return newPost
+}
+
+export const toUpdatePost = (object: any): BlogPostUpdate => {
   const updatePost: BlogPostUpdate = {}
 
   if (object.title !== undefined) updatePost.title = parseStrings(object.title, 'title')
@@ -11,5 +23,3 @@ const toUpdatePost = (object: any): BlogPostUpdate => {
 
   return updatePost
 }
-
-export default toUpdatePost

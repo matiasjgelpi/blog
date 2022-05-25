@@ -1,7 +1,7 @@
 import BlogPostModel from '../../database/models/BlogpostModel'
 import MovieModel from '../../database/models/MovieModel'
-import toNewPost from '../../utils/toNewPost'
-import toNewMovie from '../../utils/toNewMovie'
+import { toNewPost } from '../../utils/parsePost'
+import { toNewMovie } from '../../utils/parseMovie'
 
 export const postBlogPost = (req: any, res: any): any => {
   void (async () => {

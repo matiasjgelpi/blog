@@ -5,7 +5,7 @@ import MovieModel from '../../database/models/MovieModel'
 export const getAllBlogPosts = (_req: any, res: any): any => {
   void (async () => {
     try {
-      const blogPosts = await BlogPostModel.find({}, 'title rating').populate({ path: 'movie', model: MovieModel, select: ['original_title', 'country', 'year'] })
+      const blogPosts = await BlogPostModel.find({}, 'title rating date content').populate({ path: 'movie', model: MovieModel, select: ['original_title', 'country', 'year'] })
       return res.json(blogPosts)
     } catch (err: any) {
       return res.status(400).json({ msg: err.toString() })
