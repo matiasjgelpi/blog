@@ -2,10 +2,23 @@ import { parseIds } from '../../utils/blogValidators'
 import BlogPostModel from '../../database/models/BlogpostModel'
 import MovieModel from '../../database/models/MovieModel'
 
-export const getAllBlogPosts = (_req: any, res: any): any => {
+export const getAllBlogPosts = (req: any, res: any): any => {
+  console.log(req.query)
   void (async () => {
     try {
-      const blogPosts = await BlogPostModel.find({}, 'title rating date content').populate({ path: 'movie', model: MovieModel, select: ['original_title', 'country', 'year'] })
+      let blogPosts = await BlogPostModel.find({}).populate({ path: 'movie', model: MovieModel, select: ['original_title', 'country', 'year'] })
+
+      if (req.query.title !== undefined) {
+        blogPosts = blogPosts.filter(post => post.title.toLowerCase().includes(req.query.title.toLowerCase()))
+      }
+
+      if (req.query.date !== undefined) {
+        blogPosts = blogPosts.sort((a: any, b: any) => a.date - b.date)
+        if (req.query.date === 'desc') {
+          blogPosts = blogPosts.reverse()
+        }
+      }
+
       return res.json(blogPosts)
     } catch (err: any) {
       return res.status(400).json({ msg: err.toString() })
