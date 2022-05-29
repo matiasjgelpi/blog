@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import { connectDb } from './database/dbConnection'
 import blogPostRoutes from './routes/BlogPostRoutes'
+
 const cors = require('cors')
 
 connectDb()
@@ -9,8 +10,6 @@ connectDb()
 const app = express()
 app.use(express.json())
 app.use(cors())
-
-
 
 app.use('/', blogPostRoutes)
 
