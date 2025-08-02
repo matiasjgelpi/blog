@@ -164,18 +164,41 @@ const posts = (await getCollection("posts")).sort((a: any, b: any) => {
     <h2 class="text-4xl font-heading font-medium mb-12 text-dark-navy text-center tracking-tight-elegant">
       Últimos Artículos
     </h2>
-    <div class="grid gap-8 md:grid-cols-3">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
       {
         posts
-          .slice(0, 3)
+          .slice(0, 6)
           .map((post) => (
             <PostCard
               title={post.data.title}
-              description={post?.data?.description || 'Sin descripción'}
+              description={post?.data?.description || 'Un artículo reflexivo sobre diversos temas de la vida, sociedad y cultura contemporánea.'}
               href={`/posts/${post.slug}`}
             />
           ))
       }
+    </div>
+
+    <!-- View all posts button -->
+    <div class="text-center mt-12">
+      <a
+        href="/posts"
+        class="inline-flex items-center font-ui font-medium text-primary-blue hover:text-dark-navy bg-white hover:bg-light-blue px-8 py-3 rounded-full border border-primary-blue hover:border-dark-navy transition-all duration-300 shadow-md hover:shadow-lg"
+      >
+        Ver todos los artículos
+        <svg
+          class="ml-2 w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </a>
     </div>
   </main>
 </Layout>
