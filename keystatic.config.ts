@@ -1,8 +1,12 @@
 import { config, fields } from "@keystatic/core";
 
 export default config({
+  // storage: {
+  //   kind: "local",
+  // },
   storage: {
-    kind: "local",
+    kind: "github",
+    repo: "matiasjgelpi/blog",
   },
   collections: {
     posts: {
@@ -11,14 +15,18 @@ export default config({
       path: "src/content/posts/*",
       format: { contentField: "content" },
       schema: {
-        title: fields.slug({name: { label: "Título" }}),
+        title: fields.slug({ name: { label: "Título" } }),
         description: fields.text({
           label: "Descripción",
           multiline: true,
           defaultValue: "Sin descripción",
         }),
-        date: fields.date({ label: "Fecha", defaultValue: {kind:"today"} }),
+        date: fields.date({ label: "Fecha", defaultValue: { kind: "today" } }),
         draft: fields.checkbox({ label: "Borrador" }),
+        image: fields.image({
+          label: "Imagen",
+          description: "Imagen destacada del post",
+        }),
         content: fields.markdoc({
           label: "Content",
         }),
