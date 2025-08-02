@@ -17,6 +17,11 @@
   --medium-gray: #64748b;
   --white: #ffffff;
   --off-white: #f9fafb;
+
+  /* Red accent colors */
+  --accent-red: #dc2626;
+  --light-red: #fef2f2;
+  --dark-red: #991b1b;
 }
 
 /* Base typography setup */
