@@ -18,6 +18,9 @@ module.exports = {
         'charcoal': '#374151',
         'light-gray': '#f8fafc',
         'medium-gray': '#64748b',
+        'accent-red': '#dc2626',
+        'light-red': '#fef2f2',
+        'dark-red': '#991b1b',
       },
       letterSpacing: {
         'elegant': '0.3px',
