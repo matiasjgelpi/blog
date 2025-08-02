@@ -77,39 +77,65 @@ const posts = (await getCollection("posts")).sort((a: any, b: any) => {
         <!-- Text Content -->
         <div class="text-center lg:text-left">
           <div class="backdrop-blur-md bg-white/35 rounded-3xl p-12 border border-white/40 shadow-2xl">
-        <h1
-          class="text-5xl md:text-7xl lg:text-8xl font-heading font-semibold tracking-tighter-elegant mb-8 text-slate-800"
-        >
-          Pensamientos,
-          <span class="block font-heading italic text-blue-700 opacity-90">
-            Opiniones & Ideas
-          </span>
-        </h1>
-        <p
-          class="text-xl md:text-2xl font-body text-slate-700 mb-12 max-w-4xl mx-auto leading-relaxed tracking-elegant"
-        >
-          Un espacio para reflexionar sobre la vida, la sociedad, la cultura y
-          todo aquello que nos rodea. Comparto mis pensamientos y perspectivas
-          sobre los temas que me apasionan.
-        </p>
-        <div class="flex justify-center font-ui">
-          <button
-            class="group bg-slate-800 text-white hover:bg-slate-700 hover:text-white font-semibold px-12 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center"
-          >
-            Explorar Artículos
-            <svg
-              class="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold tracking-tighter-elegant mb-6 text-slate-800"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"></path>
-            </svg>
-          </button>
+              Pensamientos,
+              <span class="block font-heading italic text-blue-700 opacity-90">
+                Opiniones & Ideas
+              </span>
+            </h1>
+            <p
+              class="text-lg md:text-xl font-body text-slate-700 mb-8 max-w-2xl lg:max-w-none leading-relaxed tracking-elegant"
+            >
+              Un espacio para reflexionar sobre la vida, la sociedad, la cultura y
+              todo aquello que nos rodea. Comparto mis pensamientos y perspectivas
+              sobre los temas que me apasionan.
+            </p>
+            <div class="flex justify-center lg:justify-start font-ui">
+              <button
+                class="group bg-slate-800 text-white hover:bg-slate-700 hover:text-white font-semibold px-10 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center"
+              >
+                Explorar Artículos
+                <svg
+                  class="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Placeholder -->
+        <div class="hidden lg:block">
+          <div class="relative">
+            <!-- Main image placeholder -->
+            <div class="aspect-[4/5] bg-white/20 backdrop-blur-sm rounded-3xl border-2 border-white/30 shadow-2xl overflow-hidden">
+              <div class="h-full flex flex-col items-center justify-center text-slate-700 p-8">
+                <!-- Camera icon -->
+                <svg class="w-20 h-20 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <p class="text-center font-ui text-sm opacity-70 mb-2">Imagen ilustrativa</p>
+                <p class="text-center font-body text-xs opacity-50 max-w-48">
+                  Aquí irá una fotografía que represente la esencia de las reflexiones y pensamientos compartidos
+                </p>
+              </div>
+            </div>
+
+            <!-- Decorative elements around image -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-200/20 rounded-full blur-2xl"></div>
+          </div>
         </div>
       </div>
     </div>
