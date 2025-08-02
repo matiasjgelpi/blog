@@ -1,1 +1,75 @@
 @import "tailwindcss";
+
+/* Color palette - Blues, whites, blacks, grays */
+:root {
+  /* Primary fonts - elegant and sophisticated */
+  --font-heading: 'Playfair Display', 'Times New Roman', serif;
+  --font-body: 'Merriweather', 'Georgia', serif;
+  --font-ui: 'Lato', 'Helvetica Neue', sans-serif;
+
+  /* Color palette */
+  --primary-blue: #1e40af;
+  --secondary-blue: #3b82f6;
+  --light-blue: #dbeafe;
+  --dark-navy: #1e293b;
+  --charcoal: #374151;
+  --light-gray: #f8fafc;
+  --medium-gray: #64748b;
+  --white: #ffffff;
+  --off-white: #f9fafb;
+}
+
+/* Base typography setup */
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  color: var(--charcoal);
+  background-color: var(--white);
+}
+
+/* Elegant heading styles */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--dark-navy);
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  color: var(--dark-navy);
+}
+
+/* Font utility classes */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+/* Refined reading experience */
+p {
+  margin-bottom: 1.25em;
+  line-height: 1.7;
+}
+
+/* Quote styling */
+blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: var(--medium-gray);
+}
