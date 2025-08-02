@@ -1,11 +1,121 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import PostCard from "../components/PostCard.astro";
+
+import { getCollection } from "astro:content";
+
+
+const posts = (await getCollection("posts")).sort((a: any, b: any) => {
+  const dateA = a.data?.date ? new Date(a.data.date).getTime() : 0;
+  const dateB = b.data?.date ? new Date(b.data.date).getTime() : 0;
+  return dateB - dateA;
+});
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Navigation -->
+  <nav class="border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-black tracking-tight">
+            Reflexiones
+          </h1>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-black transition-colors font-medium"
+            >Inicio</a
+          >
+          <a
+            href="#"
+            class="text-gray-600 hover:text-black transition-colors font-medium"
+            >Artículos</a
+          >
+          <a
+            href="#"
+            class="text-gray-600 hover:text-black transition-colors font-medium"
+            >Sobre mí</a
+          >
+          <a
+            href="#"
+            class="text-gray-600 hover:text-black transition-colors font-medium"
+            >Contacto</a
+          >
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative bg-black text-white py-24 lg:py-32">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black opacity-90"
+    >
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1
+          class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+        >
+          Pensamientos,
+          <span class="block text-gray-300">Opiniones & Ideas</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+        >
+          Un espacio para reflexionar sobre la vida, la sociedad, la cultura y
+          todo aquello que nos rodea. Comparto mis pensamientos y perspectivas
+          sobre los temas que me apasionan.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            class="bg-white text-black hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg transition-colors inline-flex items-center"
+          >
+            Explorar Artículos
+            <svg
+              class="ml-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          <button
+            class="border border-gray-300 text-white hover:bg-white hover:text-black font-semibold px-8 py-3 bg-transparent rounded-lg transition-colors"
+          >
+            Suscribirse
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="posts" class="max-w-4xl mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-8 text-gray-800 text-center">
+      Últimos Posts
+    </h2>
+    <div class="grid gap-8 md:grid-cols-3">
+      {
+        posts
+          .slice(0, 3)
+          .map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post?.data?.description || 'Sin descripción'}
+              href={`/posts/${post.slug}`}
+            />
+          ))
+      }
+    </div>
+  </main>
 </Layout>
