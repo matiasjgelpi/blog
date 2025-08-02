@@ -6,8 +6,61 @@ export interface Props {
 }
 const { title, description, href } = Astro.props;
 ---
-<article style="border:1px solid #eee; border-radius:8px; padding:1rem; margin:1rem 0; box-shadow:0 2px 8px #eee;">
-  <h2>{title}</h2>
-  <p>{description}</p>
-  <a href={href} style="color:#0070f3; text-decoration:underline;">Leer más</a>
+
+<article class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100">
+  <!-- Card header with subtle gradient -->
+  <div class="h-2 bg-gradient-to-r from-primary-blue via-secondary-blue to-light-blue"></div>
+  
+  <!-- Card content -->
+  <div class="p-8">
+    <!-- Title -->
+    <h3 class="font-heading text-2xl font-medium text-dark-navy mb-4 group-hover:text-primary-blue transition-colors duration-300 leading-tight">
+      {title}
+    </h3>
+    
+    <!-- Description -->
+    <p class="font-body text-charcoal text-base leading-relaxed mb-6 tracking-elegant line-clamp-3">
+      {description}
+    </p>
+    
+    <!-- Read more link -->
+    <div class="flex items-center justify-between">
+      <a 
+        href={href} 
+        class="inline-flex items-center font-ui font-medium text-primary-blue hover:text-dark-navy transition-colors duration-300 group-hover:translate-x-1 transform"
+      >
+        Leer artículo
+        <svg 
+          class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </a>
+      
+      <!-- Subtle decorative element -->
+      <div class="w-8 h-8 bg-light-blue rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <div class="w-2 h-2 bg-primary-blue rounded-full"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Hover overlay effect -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-blue/5 to-secondary-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"></div>
 </article>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
