@@ -1,76 +1,38 @@
 ---
-// [slug].astro
 import { ChevronLeft, Calendar, Clock, Tag } from "lucide-react";
 import Header from "@/components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
 
-// Para generar rutas estáticas
-export async function getStaticPaths() {
-  // Datos dentro de la función para ser independiente
-  const posts = [
-    {
-      id: "finales-abiertos-cine",
-      title: "Sobre los finales abiertos en el cine contemporáneo",
-      excerpt: "¿Por qué tantas películas actuales evitan cerrar sus historias? Una reflexión sobre la ambigüedad narrativa y su relación con nuestros tiempos inciertos.",
-      content: `
-        <p>Los finales abiertos se han convertido en una tendencia dominante en el cine contemporáneo. Desde <em>No Country for Old Men</em> hasta <em>Her</em>, pasando por <em>Inception</em>, cada vez más directores optan por conclusiones que dejan preguntas sin responder.</p>
-        
-        <p>Esta preferencia por la ambigüedad no es casualidad. Refleja una época donde las certezas son escasas y las respuestas definitivas parecen imposibles. El cine, como espejo de su tiempo, abraza esta incertidumbre y la convierte en arte.</p>
-        
-        <p>Pero hay algo más profundo aquí. Los finales abiertos obligan al espectador a participar activamente en la construcción del sentido. Ya no somos consumidores pasivos de narrativas cerradas, sino co-creadores de significado.</p>
-        
-        <p>Lynch fue pionero en esto. <em>Mulholland Drive</em> no necesita explicación porque la explicación mataría su poder. La película vive en esa zona gris donde la lógica narrativa convencional se disuelve y emerge algo más visceral, más verdadero.</p>
-        
-        <p>El problema surge cuando la ambigüedad se convierte en fórmula. Cuando directores menos hábiles usan finales abiertos no como herramienta narrativa sino como escape fácil de la responsabilidad de cerrar sus historias de manera satisfactoria.</p>
-        
-        <p>La diferencia está en la intención. Un final abierto funciona cuando surge de la necesidad narrativa, cuando es la única conclusión honesta para esa historia específica. Falla cuando es un truco para parecer profundo sin hacer el trabajo real de construcción de sentido.</p>
-      `,
-      date: "15 Ene 2024",
-      category: "Cine",
-      readTime: "5 min",
-      featured: true
-    },
-    {
-      id: "dependencias-javascript",
-      title: "El dilema de las dependencias en JavaScript",
-      excerpt: "Cada vez que instalamos un paquete, agregamos complejidad. Algunas notas sobre minimalismo en el desarrollo web y la fatiga de las herramientas.",
-      content: `
-        <p>Npm install. Tres palabras que pueden cambiar radicalmente el destino de un proyecto. Con cada dependencia que agregamos, tomamos una pequeña hipoteca sobre el futuro de nuestro código.</p>
-        
-        <p>El ecosistema JavaScript es paradójico. Su mayor fortaleza —la abundancia de paquetes listos para usar— es también su mayor debilidad. Tenemos una biblioteca para todo, desde formatear fechas hasta animar elementos, pero ¿a qué costo?</p>
-        
-        <p>Cada dependencia trae consigo no solo su propio código, sino toda su cadena de dependencias. Un simple paquete para manejar fechas puede arrastrar docenas de sub-dependencias. Es dependencias hasta abajo.</p>
-        
-        <p>Y luego está el tema de las actualizaciones. Semantic versioning promete estabilidad, pero la realidad es más compleja. Breaking changes se esconden detrás de actualizaciones "menores". Vulnerabilidades aparecen en dependencias que ni sabíamos que teníamos.</p>
-        
-        <p>La solución no es volver a escribir todo desde cero. El conocimiento colectivo que representan estas bibliotecas es invaluable. Pero sí necesitamos ser más conscientes sobre lo que incluimos en nuestros proyectos.</p>
-        
-        <p>Preguntarse: ¿realmente necesito esta dependencia? ¿Puedo escribir esas 20 líneas de código yo mismo? ¿Entiendo qué hace esta biblioteca lo suficientemente bien como para debuggearla cuando algo falle?</p>
-      `,
-      date: "12 Ene 2024",
-      category: "Tecnología",
-      readTime: "3 min"
-    }
-  ];
+const { slug } = Astro.params;
 
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post } // Pasamos el post completo como prop
-  }));
+const post = await getEntry("posts", slug);
+
+if (!post) {
+  return Astro.redirect("/404");
 }
 
-// Obtenemos el post de las props (ya no necesitamos buscarlo)
-const { post } = Astro.props;
+const postData = await post?.data;
+const { Content } = await post?.render();
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
 ---
 
 <Layout>
   <Header />
-  
+
   <main class="max-w-4xl mx-auto px-6 py-8">
     <!-- Navegación de regreso -->
     <nav class="mb-8">
-      <a 
-        href="/" 
+      <a
+        href="/"
         class="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-serif-body text-sm"
       >
         <ChevronLeft className="w-4 h-4" />
@@ -80,45 +42,46 @@ const { post } = Astro.props;
 
     <!-- Header del post -->
     <header class="mb-8 pb-8 border-b border-border">
-      <div class="flex items-center gap-4 text-xs text-muted-foreground uppercase tracking-wide font-serif-body mb-4">
+      <div
+        class="flex items-center gap-4 text-xs text-muted-foreground uppercase tracking-wide font-serif-body mb-4"
+      >
         <span class="inline-flex items-center gap-1">
           <Tag className="w-3 h-3" />
-          {post.category}
+          {postData?.category}
         </span>
         <span>•</span>
         <span class="inline-flex items-center gap-1">
           <Calendar className="w-3 h-3" />
-          {post.date}
+          {postData?.date}
         </span>
         <span>•</span>
         <span class="inline-flex items-center gap-1">
           <Clock className="w-3 h-3" />
-          {post.readTime}
+          {postData?.readTime}
         </span>
       </div>
-      
-      <h1 class="font-serif-display text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-4">
-        {post.title}
+
+      <h1
+        class="font-serif-display text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-4"
+      >
+        {postData?.title}
       </h1>
-      
+
       <p class="text-lg text-muted-foreground leading-relaxed font-serif-body">
-        {post.excerpt}
+        {postData?.excerpt}
       </p>
     </header>
 
     <!-- Contenido del post -->
     <article class="prose prose-lg max-w-none">
-      <div 
-        class="font-serif-body leading-relaxed text-foreground space-y-6 [&>p]:mb-6 [&>em]:italic [&>em]:text-muted-foreground"
-        set:html={post.content}
-      />
+      <Content />
     </article>
 
     <!-- Footer del post -->
     <footer class="mt-12 pt-8 border-t border-border">
       <div class="flex items-center justify-between">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="text-primary hover:underline font-serif-body text-sm"
         >
           ← Más notas marginales

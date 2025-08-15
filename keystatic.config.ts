@@ -16,13 +16,14 @@ export default config({
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Título" } }),
-        description: fields.text({
+        excerpt: fields.text({
           label: "Descripción",
           multiline: true,
           defaultValue: "Sin descripción",
         }),
         date: fields.date({ label: "Fecha", defaultValue: { kind: "today" } }),
-        draft: fields.checkbox({ label: "Borrador" }),
+        category: fields.text({ label: "Categoría" }),
+        readTime: fields.text({ label: "Tiempo de lectura" }),
         image: fields.image({
           label: "Imagen",
           description: "Imagen destacada del post",
@@ -30,6 +31,7 @@ export default config({
         content: fields.markdoc({
           label: "Content",
         }),
+        featured: fields.checkbox({ label: "Destacado", defaultValue: false }),
       },
     },
   },

@@ -1,63 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PostCard from "../components/PostCard.astro";
 
 import { getCollection } from "astro:content";
 import HeroSection from "../components/HeroSection.astro";
 import Header from "../components/Header.astro";
 import BlogPost from "../components/BlogPost.astro";
 
+const today = new Date();
+
 const posts = (await getCollection("posts")).sort((a: any, b: any) => {
   const dateA = a.data?.date ? new Date(a.data.date).getTime() : 0;
   const dateB = b.data?.date ? new Date(b.data.date).getTime() : 0;
   return dateB - dateA;
 });
-
-const mockPosts = [
-  {
-    title: "Sobre los finales abiertos en el cine contemporáneo",
-    excerpt:
-      "¿Por qué tantas películas actuales evitan cerrar sus historias? Una reflexión sobre la ambigüedad narrativa y su relación con nuestros tiempos inciertos.",
-    date: "15 Ene 2024",
-    category: "Cine",
-    readTime: "5 min",
-    featured: true,
-    slug: "finales-abiertos-cine",
-  },
-  {
-    title: "El dilema de las dependencias en JavaScript",
-    excerpt:
-      "Cada vez que instalamos un paquete, agregamos complejidad. Algunas notas sobre minimalismo en el desarrollo web y la fatiga de las herramientas.",
-    date: "12 Ene 2024",
-    category: "Tecnología",
-    readTime: "3 min",
-    slug: "dependencias-javascript",
-  },
-  {
-    title: "Notas sobre la productividad tóxica",
-    excerpt:
-      "La obsesión con optimizar cada minuto del día. Por qué a veces no hacer nada es la decisión más productiva que podemos tomar.",
-    date: "8 Ene 2024",
-    category: "Reflexiones",
-    readTime: "4 min",
-  },
-  {
-    title: "Lynch y la televisión: Twin Peaks como experimento",
-    excerpt:
-      "Cómo David Lynch transformó el medio televisivo y por qué Twin Peaks sigue siendo una anomalía hermosa en el panorama audiovisual.",
-    date: "3 Ene 2024",
-    category: "Cine",
-    readTime: "7 min",
-  },
-  {
-    title: "CSS Grid vs Flexbox: no es una guerra",
-    excerpt:
-      "Ambas tecnologías tienen su lugar. Algunas reflexiones sobre cuándo usar cada una y por qué la obsesión por elegir bando es innecesaria.",
-    date: "28 Dic 2023",
-    category: "Tecnología",
-    readTime: "6 min",
-  },
-];
 ---
 
 <Layout>
@@ -78,15 +33,15 @@ const mockPosts = [
 
         <div class="space-y-6">
           {
-            mockPosts.map((post, index) => (
+            posts.map((post, index) => (
               <BlogPost
-                title={post.title}
-                excerpt={post.excerpt}
-                date={post.date}
-                category={post.category}
-                readTime={post.readTime}
-                featured={post.featured}
+                title={post.data.title}
+                excerpt={post.data.excerpt}
+                date={post.data.date}
+                category={post.data.category}
+                readTime={post.data.readTime}
                 slug={post.slug}
+                featured={post.data.featured}
               />
             ))
           }
@@ -98,7 +53,7 @@ const mockPosts = [
   <footer class="border-t border-border bg-muted/30 mt-16">
     <div class="max-w-6xl mx-auto px-6 py-8 text-center">
       <p class="text-sm text-muted-foreground font-serif-body">
-        © 2025 Matías Gelpi. Todas las notas marginales son mías.
+        © {today.getFullYear()} Matías Gelpi. Todas las notas marginales son mías.
       </p>
     </div>
   </footer>
