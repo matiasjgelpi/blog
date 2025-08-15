@@ -1,80 +1,106 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
+
 
 /* Color palette - Blues, whites, blacks, grays */
 :root {
-  /* Primary fonts - elegant and sophisticated */
-  --font-heading: 'Playfair Display', 'Times New Roman', serif;
-  --font-body: 'Merriweather', 'Georgia', serif;
-  --font-ui: 'Lato', 'Helvetica Neue', sans-serif;
+  /* Colores base inspirados en papel periódico vintage */
+  --background: 43 23% 96%; /* Papel crema vintage */
+  --foreground: 0 0% 13%; /* Negro tinta */
 
-  /* Color palette */
-  --primary-blue: #1e40af;
-  --secondary-blue: #3b82f6;
-  --light-blue: #dbeafe;
-  --dark-navy: #1e293b;
-  --charcoal: #374151;
-  --light-gray: #f8fafc;
-  --medium-gray: #64748b;
-  --white: #ffffff;
-  --off-white: #f9fafb;
+  --card: 43 23% 98%;
+  --card-foreground: 0 0% 13%;
 
-  /* Red accent colors */
-  --accent-red: #dc2626;
-  --light-red: #fef2f2;
-  --dark-red: #991b1b;
+  --popover: 43 23% 98%;
+  --popover-foreground: 0 0% 13%;
+
+  /* Colores principales - negro periódico */
+  --primary: 0 0% 13%;
+  --primary-foreground: 43 23% 96%;
+
+  /* Secundarios - sepia clásico */
+  --secondary: 36 33% 88%;
+  --secondary-foreground: 0 0% 13%;
+
+  /* Mutados - grises vintage */
+  --muted: 36 16% 91%;
+  --muted-foreground: 0 0% 45%;
+
+  /* Accent - sepia oscuro */
+  --accent: 30 22% 82%;
+  --accent-foreground: 0 0% 13%;
+
+  --destructive: 0 65% 51%;
+  --destructive-foreground: 43 23% 96%;
+
+  /* Bordes sutiles estilo periódico */
+  --border: 36 16% 82%;
+  --input: 36 16% 88%;
+  --ring: 0 0% 13%;
+
+  --radius: 0.5rem;
+
+  --sidebar-background: 0 0% 98%;
+
+  --sidebar-foreground: 240 5.3% 26.1%;
+
+  --sidebar-primary: 240 5.9% 10%;
+
+  --sidebar-primary-foreground: 0 0% 98%;
+
+  --sidebar-accent: 240 4.8% 95.9%;
+
+  --sidebar-accent-foreground: 240 5.9% 10%;
+
+  --sidebar-border: 220 13% 91%;
+
+  --sidebar-ring: 217.2 91.2% 59.8%;
 }
 
-/* Base typography setup */
+.dark {
+  /* Modo oscuro inspirado en tinta sobre papel oscuro */
+  --background: 0 0% 8%; /* Negro profundo */
+  --foreground: 43 23% 94%; /* Crema claro */
+
+  --card: 0 0% 11%;
+  --card-foreground: 43 23% 94%;
+
+  --popover: 0 0% 11%;
+  --popover-foreground: 43 23% 94%;
+
+  --primary: 43 23% 94%;
+  --primary-foreground: 0 0% 8%;
+
+  /* Secundarios - sepia oscuro */
+  --secondary: 0 0% 16%;
+  --secondary-foreground: 43 23% 94%;
+
+  --muted: 0 0% 14%;
+  --muted-foreground: 43 10% 68%;
+
+  --accent: 30 15% 22%;
+  --accent-foreground: 43 23% 94%;
+
+  --destructive: 0 65% 51%;
+  --destructive-foreground: 43 23% 94%;
+
+  --border: 0 0% 18%;
+  --input: 0 0% 16%;
+  --ring: 43 23% 94%;
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-primary: 224.3 76.3% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+* {
+  @apply  border-border;
+}
+
 body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.7;
-  letter-spacing: 0.3px;
-  color: var(--charcoal);
-  background-color: var(--white);
-}
-
-/* Elegant heading styles */
-h1 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  color: var(--dark-navy);
-}
-
-h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.3px;
-  color: var(--dark-navy);
-}
-
-/* Font utility classes */
-.font-heading {
-  font-family: var(--font-heading);
-}
-
-.font-body {
-  font-family: var(--font-body);
-}
-
-.font-ui {
-  font-family: var(--font-ui);
-}
-
-/* Refined reading experience */
-p {
-  margin-bottom: 1.25em;
-  line-height: 1.7;
-}
-
-/* Quote styling */
-blockquote {
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: var(--medium-gray);
+  @apply bg-background text-foreground;
 }

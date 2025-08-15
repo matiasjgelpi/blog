@@ -1,0 +1,71 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="min-h-screen bg-background">
+    <Header />
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+      <article class="max-w-3xl mx-auto">
+        <div class="border-b border-border pb-6 mb-8 text-center">
+          <h1
+            class="font-serif-display text-3xl font-bold text-foreground mb-4"
+          >
+            Sobre mí
+          </h1>
+          <p class="text-muted-foreground text-lg font-serif-body italic">
+            Algunas líneas sobre quien escribe estas notas
+          </p>
+        </div>
+        <div
+          class="prose prose-slate dark:prose-invert max-w-none font-serif-body text-foreground"
+        >
+          <div class="space-y-6 text-lg leading-relaxed">
+            <p>
+              Soy Matías Gelpi, y esto es mi rincón en internet. Un lugar donde
+              dejo caer pensamientos sobre cine, tecnología, libros y esas cosas
+              que me rondan la cabeza mientras tomo café.
+            </p>
+
+            <p>
+              Trabajo con código, pero también me gusta perderme en una película
+              de Lynch o en un libro que me descoloque. Creo que las mejores
+              ideas surgen en los márgenes, en esos espacios entre disciplinas
+              donde no hay reglas claras.
+            </p>
+
+            <p>
+              Este blog no tiene una agenda específica. Escribo cuando algo me
+              inquieta lo suficiente como para necesitar ponerlo en palabras. A
+              veces sobre tecnología, a veces sobre cine, a veces sobre esas
+              pequeñas reflexiones que aparecen mientras camino.
+            </p>
+
+            <p>
+              Si algo de lo que escribo te resuena o te molesta, mejor.
+              Significa que las palabras encontraron su camino.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border text-center">
+          <p class="text-muted-foreground font-serif-body">
+            También me puedes encontrar en{" "}
+            <a href="#" class="text-primary hover:underline">Twitter</a> o{" "}
+            <a href="#" class="text-primary hover:underline">GitHub</a>
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="border-t border-border bg-muted/30 mt-16">
+      <div class="max-w-6xl mx-auto px-6 py-8 text-center">
+        <p class="text-sm text-muted-foreground font-serif-body">
+          © 2024 Matías Gelpi. Todas las notas marginales son mías.
+        </p>
+      </div>
+    </footer>
+  </div>
+</Layout>

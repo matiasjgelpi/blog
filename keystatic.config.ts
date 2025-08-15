@@ -6,7 +6,10 @@ export default config({
   // },
   storage: {
     kind: "github",
-    repo: "matiasjgelpi/blog",
+    repo: {
+      owner: "matiasjgelpi",
+      name: "blog",
+    },
   },
   collections: {
     posts: {

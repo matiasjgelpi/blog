@@ -1,0 +1,64 @@
+---
+// Header.astro
+import { ThemeToggle } from "./ThemeToggle.tsx";
+
+// Obtener la URL actual para el estado activo
+const { pathname } = Astro.url;
+---
+
+<header
+  class="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50"
+>
+  <div class="max-w-6xl mx-auto px-6 py-3">
+    <div class="flex items-center justify-between">
+      <h1
+        class="font-serif-display text-2xl font-bold text-foreground tracking-tight"
+      >
+        Notas Marginales
+      </h1>
+      <ThemeToggle client:load />
+    </div>
+
+    <nav class="mt-4 border-t border-border pt-3">
+      <ul class="flex gap-6 text-sm font-serif-body">
+        <li>
+          <a
+            href="/"
+            class={`transition-colors border-b border-transparent hover:border-primary ${
+              pathname === "/"
+                ? "text-foreground hover:text-primary"
+                : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            Inicio
+          </a>
+        </li>
+        <!-- <li>
+          //! Navegación a la página de posts para implementar mas adelante
+          <a
+            href="/posts"
+            class={`transition-colors border-b border-transparent hover:border-primary ${
+              pathname.startsWith("/posts")
+                ? "text-foreground hover:text-primary"
+                : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            Posts
+          </a>
+        </li> -->
+        <li>
+          <a
+            href="/sobre-mi"
+            class={`transition-colors border-b border-transparent hover:border-primary ${
+              pathname === "/sobre-mi"
+                ? "text-foreground hover:text-primary"
+                : "text-muted-foreground hover:text-primary"
+            }`}
+          >
+            Sobre mí
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

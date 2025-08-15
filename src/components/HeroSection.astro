@@ -1,0 +1,46 @@
+---
+// HeroSection.astro
+import heroImage from "../assets/pxfuel.jpg"
+// import heroImage from "@/assets/hero-desk.jpg";
+---
+
+<section class="relative bg-gradient-to-r from-background to-muted/30 border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Texto -->
+      <div class="space-y-6">
+        <h1 class="font-serif-display text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+          Notas Marginales
+        </h1>
+        <div class="space-y-4 text-lg font-serif-body leading-relaxed">
+          <p class="text-muted-foreground">
+            Me llamo <span class="text-foreground font-semibold">Matías Gelpi</span>. 
+            Programo, miro películas y cada tanto escribo.
+          </p>
+          <p class="text-muted-foreground">
+            Este es un blog sin demasiado plan, una serie de notas al margen sobre 
+            <span class="text-foreground"> cine</span>, 
+            <span class="text-foreground"> tecnología</span>, cosas que me 
+            <span class="text-foreground"> inquietan</span> o me 
+            <span class="text-foreground"> entusiasman</span>.
+          </p>
+        </div>
+        <div class="pt-4">
+          <div class="w-16 h-0.5 bg-primary"></div>
+        </div>
+      </div>
+      
+      <!-- Imagen -->
+      <div class="relative">
+        <div class="relative overflow-hidden rounded-sm border border-border shadow-lg">
+          <img 
+            src={heroImage.src} 
+            alt="Escritorio de escritor con máquina de escribir vintage"
+            class="w-full h-80 lg:h-96 object-cover transition-transform duration-300 hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
