@@ -1,15 +1,12 @@
 import { config, fields } from "@keystatic/core";
 
 export default config({
-  // storage: {
-  //   kind: "local",
-  // },
   storage: {
-    kind: "github",
-    repo: {
-      owner: "matiasjgelpi",
-      name: "blog",
-    },
+    kind: "local",
+    // repo: {
+    //   owner: "matiasjgelpi",
+    //   name: "blog",
+    // },
   },
   collections: {
     posts: {
@@ -30,6 +27,31 @@ export default config({
           label: "Imagen",
           description: "Imagen destacada del post",
         }),
+        content: fields.markdoc({
+          label: "Content",
+        }),
+      },
+    },
+  },
+  singletons: {
+    about: {
+      label: "Sobre mí",
+      path: "src/content/about/index",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.text({ label: "Título" }),
+        description: fields.text({
+          label: "Descripción",
+          multiline: true,
+          defaultValue: "Sin descripción",
+        }),
+        contact: fields.array(
+          fields.object({
+            name: fields.text({ label: "Nombre" }),
+            URL: fields.text({ label: "URL" }),
+          }),
+          
+        ),
         content: fields.markdoc({
           label: "Content",
         }),
