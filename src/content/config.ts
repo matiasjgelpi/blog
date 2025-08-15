@@ -26,7 +26,17 @@ const aboutCollection = defineCollection({
   }),
 });
 
+const heroCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      image: image(),
+    }),
+});
+
 export const collections = {
   posts: postsCollection,
   about: aboutCollection,
+  hero: heroCollection,
 };

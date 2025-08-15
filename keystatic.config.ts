@@ -51,9 +51,25 @@ export default config({
           fields.object({
             name: fields.text({ label: "Nombre" }),
             URL: fields.text({ label: "URL" }),
-          }),
-          
+          })
         ),
+        content: fields.markdoc({
+          label: "Content",
+        }),
+      },
+    },
+    hero: {
+      label: "Hero",
+      path: "src/content/hero/index",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.text({ label: "Título" }),
+        image: fields.image({
+          label: "Imagen",
+          description: "Imagen portada",
+          directory: "src/assets/images/hero",
+          publicPath: "@assets/images/hero",
+        }),
         content: fields.markdoc({
           label: "Content",
         }),
