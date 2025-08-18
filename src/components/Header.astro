@@ -4,6 +4,8 @@ import { ThemeToggle } from "./ThemeToggle.tsx";
 
 // Obtener la URL actual para el estado activo
 const { pathname } = Astro.url;
+
+console.log(pathname);
 ---
 
 <header
@@ -50,7 +52,7 @@ const { pathname } = Astro.url;
           <a
             href="/sobre-mi"
             class={`transition-colors border-b border-transparent hover:border-primary ${
-              pathname === "/sobre-mi"
+              pathname.includes("sobre-mi")
                 ? "text-foreground hover:text-primary"
                 : "text-muted-foreground hover:text-primary"
             }`}

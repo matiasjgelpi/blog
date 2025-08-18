@@ -6,6 +6,8 @@ import { getCollection, getEntry } from "astro:content";
 
 const { slug } = Astro.params;
 
+const today = new Date();
+
 const post = await getEntry("posts", slug);
 
 if (!post) {
@@ -87,7 +89,7 @@ export async function getStaticPaths() {
           ← Más notas marginales
         </a>
         <p class="text-xs text-muted-foreground font-serif-body">
-          © 2024 Matías Gelpi
+         © {today.getFullYear()} Matías Gelpi. Todas las notas marginales son mías.
         </p>
       </div>
     </footer>
