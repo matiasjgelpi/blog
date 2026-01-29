@@ -1,68 +1,127 @@
-# 🚀 Blog personal con Astro + Keystatic
+# Blog Personal - Matías Gelpi
 
-Este proyecto es un **blog personal** desarrollado con [Astro](https://astro.build), integrado con [Keystatic](https://keystatic.com) como CMS sin servidor combinado con content de Astro .  
-El diseño fue creado con la \*Lovalble** y el sitio está **desplegado en Netlify\*\*.
+Blog personal desarrollado con [Astro](https://astro.build), integrado con [Keystatic](https://keystatic.com) como CMS y desplegado en Netlify.
 
-La idea principal es que sea un **side project** de código abierto, pensado como ejemplo para aprender, experimentar y mostrar un flujo moderno de creación de blogs con Astro.
+El diseño fue creado con [Lovable](https://lovable.dev/). Es un side project de código abierto, pensado como ejemplo para aprender, experimentar y mostrar un flujo moderno de creación de blogs con Astro.
 
----
+## Stack Tecnológico
 
-## 📝 Contenido
+| Tecnología | Versión | Propósito |
+|------------|---------|-----------|
+| [Astro](https://astro.build/) | v5 | Framework principal |
+| [Keystatic](https://keystatic.com/) | v0.5 | CMS headless (almacenamiento en GitHub) |
+| [Tailwind CSS](https://tailwindcss.com/) | v4 | Estilos |
+| [React](https://react.dev/) | v19 | Componentes interactivos |
+| [Markdoc](https://markdoc.dev/) | - | Formato de contenido |
+| [Netlify](https://netlify.com/) | - | Deploy con CI/CD automático |
 
-- [📝 Contenido](#-contenido)
-- [✨ Características](#-características)
-- [📦 Instalación y uso](#-instalación-y-uso)
+## Requisitos
 
----
+- Node.js 18+
+- npm, pnpm o yarn
 
-## ✨ Características
-
-- ⚡ [**Astro**](https://astro.build/) para un rendimiento optimizado.
-- 📝 [**Keystatic**](https://keystatic.com/) para la gestión de contenido (sin necesidad de base de datos).
-- 🎨 Diseño generado con [**Lovalble**](https://lovable.dev/).
-- ☁️ **Deploy en [Netlify](https://netlify.com/)** con CI/CD automático.
-- 🔓 **Código abierto** para que puedas usarlo como base de tu propio proyecto.
-- Licencia [MIT](https://github.com/matiasjgelpi/blog/blob/main/LICENSE).
-
----
-
-## 📦 Instalación y uso
-
-Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina local:
+## Instalación
 
 ```bash
-# 1. Clonar el repositorio
-git clone [https://github.com/matiasjgelpi/blog.git](https://github.com/matiasjgelpi/blog.git)
-
-# 2. Entrar al directorio
+# Clonar el repositorio
+git clone https://github.com/matiasjgelpi/blog.git
 cd blog
 
-# 3. Instalar dependencias
+# Instalar dependencias
 npm install
-# o si prefieres
-pnpm install
-# o
-yarn install
 
-# 4. Ejecutar en modo desarrollo
+# Iniciar servidor de desarrollo
 npm run dev
 
-# 5. Abrir en el navegador
-http://localhost:4321
+# Abrir en el navegador
+# http://localhost:4321
+```
 
----
+## Scripts Disponibles
 
-#Estructura del proyecto
+| Script | Descripción |
+|--------|-------------|
+| `npm run dev` | Inicia el servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Genera el sitio para producción |
+| `npm run preview` | Previsualiza el build de producción localmente |
 
-/
-├── public/          # Archivos estáticos
-├── src/             # Código fuente
-│   ├── components/  # Componentes de Astro
-│   ├── content/     # Contenido gestionado con Keystatic combinado con content api de astro
-│   ├── layouts/     # Layouts reutilizables
-│   └── pages/       # Rutas del sitio
-├── keystatic.config.ts # Configuración de Keystatic
-├── astro.config.mjs    # Configuración de Astro
-└── package.json
+## Estructura del Proyecto
 
 ```
+blog/
+├── public/               # Archivos estáticos
+├── src/
+│   ├── assets/           # Imágenes y recursos
+│   ├── components/       # Componentes Astro y React
+│   │   └── ui/           # Componentes UI reutilizables
+│   ├── content/          # Contenido del blog (Markdoc)
+│   │   ├── posts/        # Artículos del blog
+│   │   ├── about/        # Página "Sobre mí"
+│   │   └── hero/         # Contenido del hero
+│   ├── hooks/            # Custom hooks de React
+│   ├── layouts/          # Layouts de Astro
+│   ├── lib/              # Utilidades
+│   ├── pages/            # Páginas y rutas
+│   └── styles/           # Estilos globales
+├── astro.config.mjs      # Configuración de Astro
+├── keystatic.config.ts   # Configuración del CMS
+├── tailwind.config.js    # Configuración de Tailwind
+└── tsconfig.json         # Configuración de TypeScript
+```
+
+## Gestión de Contenido
+
+El contenido se gestiona a través de Keystatic CMS:
+
+1. Inicia el servidor: `npm run dev`
+2. Navega a `http://localhost:4321/keystatic`
+
+### Colecciones
+
+- **Posts**: Artículos del blog con título, descripción, fecha, categoría, tiempo de lectura e imagen
+- **About**: Página "Sobre mí" con información de contacto
+- **Hero**: Contenido de la sección principal
+
+### Esquema de Posts
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `title` | string | Título del post (genera el slug) |
+| `excerpt` | text | Descripción breve |
+| `date` | date | Fecha de publicación |
+| `category` | string | Categoría del post |
+| `readTime` | string | Tiempo estimado de lectura |
+| `image` | image | Imagen destacada (opcional) |
+| `featured` | boolean | Marcar como destacado |
+| `content` | markdoc | Contenido del artículo |
+
+## Configuración
+
+### Variables de Entorno
+
+| Variable | Descripción |
+|----------|-------------|
+| `SKIP_KEYSTATIC` | Si está definida, omite Keystatic en el build |
+
+### Path Aliases (TypeScript)
+
+```typescript
+"@/*"       → "./src/*"
+"@assets/*" → "./src/assets/*"
+```
+
+## Despliegue
+
+El proyecto está configurado para Netlify con CI/CD automático.
+
+```bash
+# Build de producción
+npm run build
+
+# Build sin CMS (producción estática)
+SKIP_KEYSTATIC=true npm run build
+```
+
+## Licencia
+
+[MIT](https://github.com/matiasjgelpi/blog/blob/main/LICENSE) - Código abierto para que puedas usarlo como base de tu propio proyecto.
